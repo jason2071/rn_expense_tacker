@@ -57,9 +57,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     height: 70,
-    padding: 5,
     backgroundColor: '#fff',
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -71,10 +69,13 @@ const styles = StyleSheet.create({
   },
   button_add: {
     backgroundColor: '#9272F4',
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   button_add_text: {
-    fontSize: 18,
+    fontSize: 20,
     color: '#fff',
   },
 });

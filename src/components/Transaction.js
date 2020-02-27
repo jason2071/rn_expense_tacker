@@ -1,19 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {GlobalContext} from '../context/GlobalState';
 
-const Transaction = ({key, transaction}) => {
+const Transaction = ({transaction}) => {
+  const {deleteTransaction} = useContext(GlobalContext);
   const sign = transaction.amount < 0 ? '-' : '+';
 
   return (
     <View
-      style={[
-        transaction.amount < 0
-          ? styles.history_item_minus
-          : styles.history_item_plus,
-      ]}>
+      style={[transaction.amount < 0 ? styles.item_minus : styles.item_plus]}>
       <TouchableOpacity
         style={styles.remove}
-        onPress={() => console.log('delete plus')}>
+        onPress={() => deleteTransaction(transaction.id)}>
         <Text style={styles.remove_text}>X</Text>
       </TouchableOpacity>
       <View style={styles.desc}>
@@ -40,7 +38,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
-  history_item_minus: {
+  item_minus: {
     flexDirection: 'row',
     backgroundColor: '#fff',
     justifyContent: 'space-between',
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1.0,
     elevation: 1,
   },
-  history_item_plus: {
+  item_plus: {
     flexDirection: 'row',
     backgroundColor: '#fff',
     justifyContent: 'space-between',

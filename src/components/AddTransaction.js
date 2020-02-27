@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   Text,
   View,
@@ -9,9 +9,12 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
+import {GlobalContext} from '../context/GlobalState';
 const {width, height} = Dimensions.get('window');
 
 const AddTransaction = ({toggleDialog, setToggleDialog}) => {
+  const {addTransaction} = useContext(GlobalContext);
+
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState(0);
 
@@ -29,7 +32,12 @@ const AddTransaction = ({toggleDialog, setToggleDialog}) => {
 
   const handleSubmit = () => {
     setToggleDialog(false);
-    console.log({title, amount});
+    const newTransaction = {
+      id: Math.floor(Math.random() * 100000000),
+      text: title,
+      amount: +amount,
+    };
+    addTransaction(newTransaction);
   };
 
   return (
