@@ -15,7 +15,7 @@ const {width, height} = Dimensions.get('window');
 const AddTransaction = ({toggleDialog, setToggleDialog}) => {
   const {addTransaction} = useContext(GlobalContext);
 
-  const [title, setTitle] = useState('');
+  const [text, setTitle] = useState('');
   const [amount, setAmount] = useState(0);
 
   const onChangeTextTitle = newTitle => {
@@ -34,7 +34,7 @@ const AddTransaction = ({toggleDialog, setToggleDialog}) => {
     setToggleDialog(false);
     const newTransaction = {
       id: Math.floor(Math.random() * 100000000),
-      text: title,
+      text: text,
       amount: +amount,
     };
     addTransaction(newTransaction);
@@ -56,10 +56,10 @@ const AddTransaction = ({toggleDialog, setToggleDialog}) => {
             </View>
 
             <View style={styles.padding_10}>
-              <Text style={styles.input_title}>Title</Text>
+              <Text style={styles.input_title}>Text</Text>
               <TextInput
                 style={styles.input_text}
-                placeholder="Title"
+                placeholder="Text"
                 onChangeText={onChangeTextTitle}
               />
             </View>
